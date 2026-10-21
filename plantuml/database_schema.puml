@@ -1,0 +1,38 @@
+@startuml
+title Shared SQLite Database Schema
+hide methods
+hide stereotypes
+entity customers {
+  * id : INTEGER <<PK>>
+  --
+  name : TEXT
+  email : TEXT
+  phone : TEXT
+}
+entity products {
+  * id : INTEGER <<PK>>
+  --
+  name : TEXT
+  price : REAL
+  stock : INTEGER
+}
+entity orders {
+  * id : INTEGER <<PK>>
+  --
+  customer_id : INTEGER <<FK>>
+  subtotal : REAL
+  discount : REAL
+  total : REAL
+}
+entity order_lines {
+  * id : INTEGER <<PK>>
+  --
+  order_id : INTEGER <<FK>>
+  product_id : INTEGER <<FK>>
+  quantity : INTEGER
+  line_total : REAL
+}
+customers ||--o{ orders
+orders ||--|{ order_lines
+products ||--o{ order_lines
+@enduml

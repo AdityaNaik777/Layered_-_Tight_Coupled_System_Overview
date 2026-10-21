@@ -1,0 +1,44 @@
+@startuml
+title Approach A - UML Class Diagram
+class OrderController {
+  +place_order(customer_id, items)
+  +customer_report(customer_id)
+}
+class OrderService {
+  -repo: Repository
+  -notifier: Notifier
+  -policy: DiscountPolicy
+  +place_order(customer_id, items)
+  +customer_report(customer_id)
+}
+class DiscountPolicy {
+  +discount_for(subtotal): float
+}
+interface Repository {
+  +get_customer(customer_id)
+  +get_product(product_id)
+  +reduce_stock(product_id, quantity)
+  +save_order(order)
+  +orders_for_customer(customer_id)
+}
+interface Notifier {
+  +notify(customer, order)
+}
+class SqliteRepository
+class EmailNotifier
+class Customer
+class Product
+class Order
+class OrderLine
+
+OrderController --> OrderService
+OrderService --> Repository
+OrderService --> Notifier
+OrderService --> DiscountPolicy
+SqliteRepository ..|> Repository
+EmailNotifier ..|> Notifier
+OrderService ..> Customer
+OrderService ..> Order
+Order "1" *-- "1..*" OrderLine
+OrderLine --> Product
+@enduml

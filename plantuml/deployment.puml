@@ -1,0 +1,10 @@
+@startuml
+title Test Deployment Setup
+node "Test Machine / Linux Environment" {
+  artifact "bench.py" as bench
+  component "Approach A or Approach B\nPython process" as app
+  database "SQLite :memory:" as db
+  bench --> app : calls test operations
+  app --> db : SQL queries
+}
+@enduml

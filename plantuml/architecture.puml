@@ -1,0 +1,22 @@
+@startuml
+title Architecture Comparison
+left to right direction
+package "Approach A: Layered" {
+  rectangle "Presentation\nOrderController" as A1
+  rectangle "Business\nOrderService, DiscountPolicy" as A2
+  rectangle "Interfaces + Domain\nRepository, Notifier, entities" as A3
+  rectangle "Data Layer\nSqliteRepository" as A4
+  rectangle "Notification\nEmailNotifier" as A5
+  A1 --> A2
+  A2 --> A3
+  A3 --> A4 : repository implementation
+  A3 --> A5 : notifier implementation
+}
+package "Approach B: Tightly Integrated" {
+  rectangle "app.py\nUI + rules + SQL" as B1
+  rectangle "notify.py\nSQL + messages" as B2
+  rectangle "reports.py\nSQL + formatting" as B3
+  B1 <--> B2
+  B1 <--> B3
+}
+@enduml

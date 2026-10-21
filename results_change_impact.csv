@@ -1,0 +1,6 @@
+change_id,change_description,approach_a_potential_impact_percent,approach_b_potential_impact_percent
+CR1,Rename products.price to unit_price,34.5,100.0
+CR2,Add 15% discount tier,14.2,100.0
+CR3,Change confirmation output to JSON,19.6,100.0
+CR4,Replace email with SMS,10.8,100.0
+CR5,Add loyalty points across order/report flow,96.6,100.0
